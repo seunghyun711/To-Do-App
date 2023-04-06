@@ -41,6 +41,14 @@ public class TodoController {
                                    @Positive @RequestParam int size) {
         Page<Todo> todoPage = todoService.findTodos(id, page - 1, size);
         List<Todo> todos = todoPage.getContent();
-        return new ResponseEntity<>(mapper.todoToTodoResponse(todos), HttpStatus.OK);
+        return new ResponseEntity<>(mapper.todoToTodoResponseDtos(todos), HttpStatus.OK);
+    }
+
+    // To-Do 단건 조회
+    @GetMapping("/{id}")
+    public ResponseEntity getTodo(@PathVariable("id") @Positive long id) {
+        Todo todo = todoService.findTodo(id);
+
+        return new ResponseEntity<>(mapper.todoToTodoResponseDto(todo), HttpStatus.OK);
     }
 }

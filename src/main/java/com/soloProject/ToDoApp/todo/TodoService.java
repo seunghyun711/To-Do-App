@@ -37,6 +37,17 @@ public class TodoService {
         return todoRepository.findAll(PageRequest.of(page, size, Sort.by("orders").descending()));
     }
 
+    /*
+    <To-Do 단건 조회>
+    1. id 검증(존재하는 id?)
+     */
+    public Todo findTodo(long id) {
+        // 1. id 검증
+        verifyTodo(id);
+        return todoRepository.findById(id).orElseThrow(() ->
+                new BusinessLogicException(ExceptionCode.ID_NOT_FOUND));
+    }
+
     // 중복 title 검증
     private void verifyExistsTitle(Todo todo) {
         String title = todo.getTitle();
