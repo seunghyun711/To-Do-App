@@ -60,4 +60,11 @@ public class TodoController {
 
         return new ResponseEntity<>(mapper.todoToTodoResponseDto(todo), HttpStatus.OK);
     }
+
+    // To-Do 전체 삭제
+    @DeleteMapping
+    public ResponseEntity deleteTodos() {
+        todoService.deleteTodos();
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }

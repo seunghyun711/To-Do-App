@@ -66,6 +66,14 @@ public class TodoService {
         return todoRepository.save(todo);
     }
 
+    /*
+    <To-Do 전체 삭제>
+    1. 삭제
+     */
+    public void deleteTodos(){
+        todoRepository.deleteAll();
+    }
+
     // 중복 title 검증
     private void verifyExistsTitle(Todo todo) {
         String title = todo.getTitle();
