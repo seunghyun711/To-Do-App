@@ -17,7 +17,7 @@ public class Todo {
     private String title; // 해야할 일
 
     @Column(nullable = false)
-    private int todoOrder; // 순서
+    private int orders; // 순서
 
     @Column(nullable = false)
     private boolean completed; // 진행 여부
@@ -26,8 +26,8 @@ public class Todo {
         this.title = title;
     }
 
-    public void setTodoOrder(int todoOrder) {
-        this.todoOrder = todoOrder;
+    public void setOrders(int orders) {
+        this.orders = orders;
     }
 
     public void setCompleted(boolean completed) {
