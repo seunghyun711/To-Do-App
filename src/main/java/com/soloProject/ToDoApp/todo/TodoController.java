@@ -67,4 +67,12 @@ public class TodoController {
         todoService.deleteTodos();
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    // To-Do 단건 삭제
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteTodo(@Positive @PathVariable("id") long id) {
+        todoService.deleteTodo(id);
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }

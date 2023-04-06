@@ -74,6 +74,15 @@ public class TodoService {
         todoRepository.deleteAll();
     }
 
+    /*
+    <To-Do 단건 삭제>
+    1. id 검증
+     */
+    public void deleteTodo(long id) {
+        verifyTodo(id);
+        todoRepository.deleteById(id);
+    }
+
     // 중복 title 검증
     private void verifyExistsTitle(Todo todo) {
         String title = todo.getTitle();
