@@ -16,7 +16,6 @@ import java.util.List;
 @RequestMapping("/todo")
 @Validated
 public class TodoController {
-    private final static String MEMBER_DEFAULT_URL = "/todo";
     private final TodoService todoService;
     private final TodoMapper mapper;
 
@@ -32,6 +31,16 @@ public class TodoController {
         todoService.createTodo(todo);
 
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    // To-Do 수정
+    @PatchMapping("/{id}")
+    public ResponseEntity patchTodo(@Positive @PathVariable("id") long id,
+                                    @Valid @RequestBody TodoDto.Patch patch) {
+
+        Todo todo = mapper.todoDtoPatchDtoToTodo(patch);
+        todoService.updateTodo(todo,id);
+        return new ResponseEntity<>(mapper.todoToTodoResponseDto(todo), HttpStatus.OK);
     }
 
     // To-Do list 조회

@@ -48,6 +48,24 @@ public class TodoService {
                 new BusinessLogicException(ExceptionCode.ID_NOT_FOUND));
     }
 
+    /*
+    <To-Do 내용 수정>
+    1. 수정하려는 내용이 있는지 확인
+    2. 수정
+     */
+    public Todo updateTodo(Todo todo, long id) {
+        // 1. 수정하려는 내용이 있는지 확인
+        verifyTodo(id);
+
+        // 2. 수정
+        todo.setId(id);
+        todo.setTitle(todo.getTitle());
+        todo.setOrders(todo.getOrders());
+        todo.setCompleted(todo.isCompleted());
+
+        return todoRepository.save(todo);
+    }
+
     // 중복 title 검증
     private void verifyExistsTitle(Todo todo) {
         String title = todo.getTitle();
