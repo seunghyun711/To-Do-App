@@ -9,5 +9,7 @@ public interface TodoMapper {
     // TodoDto.Post -> Todo
     Todo todoDtoPostDtoToTodo(TodoDto.Post post);
 
-    List<TodoDto.Response> todoToTodoResponse(List<Todo> todos);
+    List<TodoDto.Response> todoToTodoResponseDtos(List<Todo> todos);
+
+    TodoDto.Response todoToTodoResponseDto(Todo todo);
 }
