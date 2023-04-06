@@ -19,9 +19,9 @@ public class TodoDto {
         @NotNull(message = "할 일을 입력하세요.")
         private String title;
 
-        @Valid
-        @NotNull(message = "우선 순위를 입력하세요.")
-        private int orders;
+//        @Valid
+//        @NotNull(message = "우선 순위를 입력하세요.")
+//        private int orders;
 
         @Valid
         @NotNull(message = "진행 여부를 입력하세요(true/false")
@@ -31,7 +31,29 @@ public class TodoDto {
             this.title = title;
         }
 
-        public void setTodoOrder(int orders) {
+//        public void setTodoOrder(int orders) {
+//            this.orders = orders;
+//        }
+
+        public void setCompleted(boolean completed) {
+            this.completed = completed;
+        }
+    }
+
+    @Getter
+    @AllArgsConstructor
+    public static class Response{
+        @Positive
+        private long id;
+        private String title;
+        private int orders;
+        private boolean completed;
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public void setOrders(int orders) {
             this.orders = orders;
         }
 
