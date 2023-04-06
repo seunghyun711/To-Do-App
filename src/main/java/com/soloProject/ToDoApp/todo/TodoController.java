@@ -1,12 +1,15 @@
 package com.soloProject.ToDoApp.todo;
 
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Positive;
 import java.net.URI;
+import java.util.List;
 
 @CrossOrigin
 @RestController
@@ -29,5 +32,15 @@ public class TodoController {
         todoService.createTodo(todo);
 
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    // To-Do list 조회
+    @GetMapping
+    public ResponseEntity getTodos(@Positive @RequestParam long id,
+                                   @Positive @RequestParam int page,
+                                   @Positive @RequestParam int size) {
+        Page<Todo> todoPage = todoService.findTodos(id, page - 1, size);
+        List<Todo> todos = todoPage.getContent();
+        return new ResponseEntity<>(mapper.todoToTodoResponse(todos), HttpStatus.OK);
     }
 }
